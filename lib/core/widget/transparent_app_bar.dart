@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../theme/font.dart';
-import '../theme/style.dart';
+import '../theme/styles.dart';
 import 'icon_button_filled.dart';
 
 enum TransparentLeadingType {
@@ -13,7 +13,7 @@ enum TransparentLeadingType {
 
 class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
   const TransparentAppBar({
-    required this.title,
+    this.title = '',
     this.leadingType = TransparentLeadingType.back,
     this.actions = const [],
     Key? key,
@@ -25,7 +25,6 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     Widget leading;
 
     switch (leadingType) {
@@ -51,9 +50,8 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Text(
         title,
         style: MyFont.style(
-          color: colorScheme.onBackground,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
         ),
       ),
       actions: [
@@ -61,12 +59,12 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
           children: actions,
         ),
         SizedBox(
-          width: MyStyle.generalBodyPadding.right,
+          width: Styles.generalBodyPadding.right,
         )
       ],
     );
   }
 
   @override
-  Size get preferredSize => AppBar().preferredSize;
+  Size get preferredSize => const Size.fromHeight(65);
 }

@@ -29,11 +29,11 @@ class ThemeStateNotifier extends StateNotifier<ThemeMode> {
     }
 
     state = next;
-    sharedPreferences.setString('theme', next.toString());
+    sharedPreferences.setString('theme_mode', next.toString());
   }
 
   void loadFromStorage() {
-    final themeString = sharedPreferences.get('theme');
+    final themeString = sharedPreferences.get('theme_mode');
 
     state = themeString == null
         ? ThemeMode.light

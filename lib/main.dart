@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,12 +9,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/localization/locale_providers.dart';
 import 'core/routing/router_provider.dart';
 import 'core/service/shared_preferences_provider.dart';
+import 'core/theme/provider/flex_theme_provider.dart';
 import 'core/theme/provider/theme_mode_provider.dart';
-import 'core/theme/provider/theme_provider.dart';
+import 'feature/opening/database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Database().init();
 
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('assets/fonts/OFL.txt');
@@ -57,8 +60,9 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
-    final lightTheme = ref.watch(lightThemeProvider);
-    final darkTheme = ref.watch(darkThemeProvider);
+    final flexTheme = ref.watch(flexThemeProvider);
+    final lightTheme = FlexColorScheme.light(scheme: flexTheme).toTheme;
+    final darkTheme = FlexColorScheme.dark(scheme: flexTheme).toTheme;
     final fallbackLocale = ref.watch(fallbackLocaleProvider);
     final router = ref.watch(routerProvider);
 
