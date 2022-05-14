@@ -18,21 +18,9 @@ class MyFont {
         decoration: decoration,
       );
 
-  static TextStyle banner(BuildContext context) => style(
-        fontSize: 26,
-        fontWeight: FontWeight.w900,
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
-      );
-
   static TextStyle drawer(BuildContext context) => style(
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: FontWeight.w600,
-        color: Theme.of(context).colorScheme.onBackground,
-      );
-
-  static TextStyle header(BuildContext context) => style(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.onPrimary,
       );
 }

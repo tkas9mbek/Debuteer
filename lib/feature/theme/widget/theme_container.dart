@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../core/theme/font.dart';
-import '../../core/theme/provider/flex_theme_provider.dart';
-import '../../core/theme/provider/theme_mode_provider.dart';
-import '../../core/theme/styles.dart';
+import '../../../core/theme/font.dart';
+import '../../../core/theme/provider/flex_theme_provider.dart';
+import '../../../core/theme/provider/theme_mode_provider.dart';
+import '../../../core/theme/styles.dart';
 
 class ThemeContainer extends ConsumerWidget {
   const ThemeContainer({
@@ -18,6 +18,7 @@ class ThemeContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
     final mode = ref.watch(themeModeProvider);
     final flexTheme = ref.watch(flexThemeProvider);
     final theme = mode == ThemeMode.dark
@@ -39,6 +40,10 @@ class ThemeContainer extends ConsumerWidget {
         decoration: BoxDecoration(
           borderRadius: Styles.cardGeneralRadius,
           color: theme.primaryColor,
+          border: Border.all(
+            color: colorScheme.onPrimary,
+            width: 0.75,
+          ),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 30,
@@ -56,7 +61,7 @@ class ThemeContainer extends ConsumerWidget {
             ),
             if (flexTheme == scheme) ...[
               Icon(
-                FontAwesomeIcons.solidCheckCircle,
+                FontAwesomeIcons.solidCircleCheck,
                 color: theme.colorScheme.onPrimary,
               ),
             ],

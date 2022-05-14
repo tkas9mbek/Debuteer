@@ -3,8 +3,13 @@
   "rotate_board": "Rotate Board",
   "undefined_opening": "Undefined Opening",
   "learn_more_about": "Learn more about",
-  "skip": "Skip",
-  "done": "Done",
-  "change_lang": "Change Language",
-  "change_theme": "Change Theme"
+  "database": "Database",
+  "theme": "Theme",
+  "about": "About me",
+  "board_theme": "Board color",
+  "language": "Language",
+  "dark_brown": "Dark brown",
+  "brown": "Brown",
+  "orange": "Orange",
+  "blue": "Blue"
 }
