@@ -11,12 +11,10 @@ import 'core/routing/router_provider.dart';
 import 'core/service/shared_preferences_provider.dart';
 import 'core/theme/provider/flex_theme_provider.dart';
 import 'core/theme/provider/theme_mode_provider.dart';
-import 'feature/opening/database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Database().init();
 
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('assets/fonts/OFL.txt');

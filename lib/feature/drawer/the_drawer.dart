@@ -18,12 +18,8 @@ class TheDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme
-        .of(context)
-        .colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
     final routes = ref.watch(drawerRoutesProvider);
-    final board = ref.watch(boardThemeProvider);
-    final options = ref.watch(boardThemeListProvider);
 
     return Drawer(
       backgroundColor: colorScheme.primary,
@@ -48,35 +44,15 @@ class TheDrawer extends ConsumerWidget {
             ),
             ...routes
                 .map(
-                  (e) =>
-                  DrawerTile(
+                  (e) => DrawerTile(
                     onTap: () => context.push(e.route),
                     child: Text(
                       e.name,
                       style: MyFont.drawer(context),
                     ),
                   ),
-            )
+                )
                 .toList(),
-            DrawerTile(
-              onTap: () => context.push(routeToBoardTheme),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'board_theme'.tr(),
-                    style: MyFont.drawer(context),
-                  ),
-                  Container(
-                    height: 18,
-                    width: 25,
-                    color: options
-                        .firstWhere((element) => element.theme == board)
-                        .color,
-                  ),
-                ],
-              ),
-            ),
             DrawerTile(
               onTap: () => context.push(routeToLanguage),
               child: Row(

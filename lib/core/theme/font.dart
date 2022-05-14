@@ -23,4 +23,10 @@ class MyFont {
         fontWeight: FontWeight.w600,
         color: Theme.of(context).colorScheme.onPrimary,
       );
+
+  static TextStyle link(BuildContext context) => style(
+        color: Theme.of(context).colorScheme.onPrimary,
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+      );
 }

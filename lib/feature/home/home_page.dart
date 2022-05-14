@@ -5,14 +5,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/service/helper_functions.dart';
 import '../../core/theme/font.dart';
-import '../theme/service/board_theme_provider.dart';
 import '../../core/theme/styles.dart';
 import '../../core/widget/icon_button_filled.dart';
 import '../../core/widget/page_foundation.dart';
 import '../../core/widget/text_button_filled.dart';
 import '../../core/widget/transparent_app_bar.dart';
-import '../opening/database.dart';
+import '../database/service/database_provider.dart';
+import '../theme/service/board_theme_provider.dart';
 import 'service/orientation_provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -100,7 +101,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                     valueListenable: _controller,
                     builder: (context, game, _) {
                       final san = _controller.getSan();
-                      final opening = Database().search(san);
+                      final pgn = sanToPgn(san);
+                      final opening = ref.read(databaseProvider.notifier).search(pgn);
 
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,11 +177,22 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 padding: const EdgeInsets.all(3),
                                 child: Text(
                                   '${'learn_more_about'.tr()} ${opening.name}',
-                                  style: MyFont.style(
-                                    color: colorScheme.onPrimary,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: MyFont.link(context),
+                                ),
+                              ),
+                            ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          if (pgn.isNotEmpty)
+                            InkWell(
+                              borderRadius: BorderRadius.circular(7.5),
+                              onTap: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(3),
+                                child: Text(
+                                  'search_similar_openings'.tr(),
+                                  style: MyFont.link(context),
                                 ),
                               ),
                             ),

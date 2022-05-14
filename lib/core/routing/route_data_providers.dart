@@ -35,11 +35,11 @@ final routeDataProvider = Provider<List<RouteData>>(
       location: RouteLocation.drawer,
       icon: FontAwesomeIcons.clock,
     ),
-    // RouteData(
-    //   name: 'board_theme'.tr(),
-    //   route: routeToBoardTheme,
-    //   location: RouteLocation.drawer,
-    //   icon: FontAwesomeIcons.addressCard,
-    // ),
+    RouteData(
+      name: 'board_theme'.tr(),
+      route: routeToBoardTheme,
+      location: RouteLocation.drawer,
+      icon: FontAwesomeIcons.addressCard,
+    ),
   ],
 );
