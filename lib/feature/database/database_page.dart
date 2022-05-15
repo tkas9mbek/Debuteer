@@ -101,7 +101,7 @@ class _DatabasePageState extends ConsumerState<DatabasePage> {
               Row(
                 children: [
                   SizedBox(
-                    width: 46,
+                    width: 45,
                     child: TextField(
                       controller: textCtrl,
                       keyboardType: TextInputType.number,
@@ -125,8 +125,8 @@ class _DatabasePageState extends ConsumerState<DatabasePage> {
                         context,
                       ).copyWith(
                         contentPadding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 10,
+                          vertical: 7,
+                          horizontal: 9,
                         ),
                       ),
                     ),

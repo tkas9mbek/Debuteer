@@ -40,10 +40,10 @@ class ThemeContainer extends ConsumerWidget {
         decoration: BoxDecoration(
           borderRadius: Styles.cardGeneralRadius,
           color: theme.primaryColor,
-          border: Border.all(
+          border: flexTheme == scheme ? Border.all(
             color: colorScheme.onPrimary,
             width: 0.75,
-          ),
+          ) : null,
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 30,

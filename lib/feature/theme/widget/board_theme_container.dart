@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/theme/font.dart';
-import '../service/board_theme_provider.dart';
 import '../../../core/theme/styles.dart';
 import '../model/board_theme.dart';
+import '../service/board_theme_provider.dart';
 
 class BoardThemeContainer extends ConsumerWidget {
   const BoardThemeContainer({
@@ -35,7 +36,7 @@ class BoardThemeContainer extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              theme.name,
+              theme.name.tr(),
               style: MyFont.style(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

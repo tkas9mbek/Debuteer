@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../core/routing/route_paths.dart';
+import '../core/theme/sizes.dart';
 import 'database/service/database_provider.dart';
 
 class LoadingPage extends ConsumerStatefulWidget {
@@ -31,11 +32,19 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final fullWidth = Sizes.fullWidth(context);
 
     return Scaffold(
       backgroundColor: colorScheme.primary,
       body: Center(
-        child: SizedBox(),
+        child: SizedBox(
+          height: fullWidth * 0.17,
+          width: fullWidth * 0.17,
+          child: CircularProgressIndicator.adaptive(
+            valueColor: AlwaysStoppedAnimation<Color>(colorScheme.onPrimary),
+            strokeWidth: fullWidth * 0.02,
+          ),
+        ),
       ),
     );
   }

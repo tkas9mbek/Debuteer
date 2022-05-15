@@ -71,9 +71,6 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       localeResolutionCallback: (locale, supportedLocales) {
-        print(locale);
-        print(supportedLocales);
-
         if (!languageCodes.contains(locale?.languageCode)) {
           context.setLocale(fallbackLocale);
 

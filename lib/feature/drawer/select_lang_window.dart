@@ -33,7 +33,7 @@ class SelectLangWindow extends ConsumerWidget {
                 ),
               ),
               IconButtonFilled(
-                size: 26,
+                size: 30,
                 radius: 8,
                 onTap: () => Navigator.pop(context),
                 icon: Icons.clear,

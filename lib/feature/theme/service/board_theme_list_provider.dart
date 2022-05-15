@@ -10,22 +10,22 @@ final boardThemeListProvider = Provider<List<BoardTheme>>(
     BoardTheme(
       theme: BoardColor.darkBrown,
       color: MyColors.darkBrown,
-      name: 'dark_brown'.tr(),
+      name: 'dark_brown',
     ),
     BoardTheme(
       theme: BoardColor.brown,
       color: MyColors.brown,
-      name: 'brown'.tr(),
+      name: 'brown',
     ),
     BoardTheme(
       theme: BoardColor.orange,
       color: MyColors.orange,
-      name: 'orange'.tr(),
+      name: 'orange',
     ),
     BoardTheme(
       theme: BoardColor.green,
       color: MyColors.blue,
-      name: 'blue'.tr(),
+      name: 'blue',
     ),
   ],
 );

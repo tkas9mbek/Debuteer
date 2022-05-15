@@ -136,7 +136,7 @@ class _HomePageState extends ConsumerState<BoardPage> {
                             name: opening?.name ?? 'undefined_opening'.tr(),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 18,
                           ),
                           Wrap(
                             children: san
@@ -144,14 +144,14 @@ class _HomePageState extends ConsumerState<BoardPage> {
                                   (e) => Container(
                                     margin: const EdgeInsets.only(
                                       right: 10,
-                                      bottom: 10,
+                                      bottom: 13,
                                     ),
                                     decoration: BoxDecoration(
                                       borderRadius: Styles.cardGeneralRadius,
                                       color: colorScheme.primaryContainer,
                                     ),
                                     padding: const EdgeInsets.symmetric(
-                                      vertical: 7,
+                                      vertical: 8,
                                       horizontal: 13,
                                     ),
                                     child: Text(
@@ -161,7 +161,7 @@ class _HomePageState extends ConsumerState<BoardPage> {
                                 )
                                 .toList(),
                           ),
-                          if (opening != null)
+                          if (opening != null) ...[
                             InkWell(
                               borderRadius: BorderRadius.circular(7.5),
                               onTap: () {
@@ -177,22 +177,20 @@ class _HomePageState extends ConsumerState<BoardPage> {
                                 launchUrl(params);
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(3),
+                                padding: const EdgeInsets.all(5),
                                 child: Text(
                                   '${'learn_more_about'.tr()} ${opening.name}',
                                   style: MyFont.link(context),
                                 ),
                               ),
                             ),
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          ],
                           if (pgn.isNotEmpty)
                             InkWell(
                               borderRadius: BorderRadius.circular(7.5),
                               onTap: () => _searchSimilar(pgn),
                               child: Padding(
-                                padding: const EdgeInsets.all(3),
+                                padding: const EdgeInsets.all(5),
                                 child: Text(
                                   'search_similar_openings'.tr(),
                                   style: MyFont.link(context),

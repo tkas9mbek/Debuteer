@@ -28,19 +28,19 @@ class TheDrawer extends ConsumerWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 15,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButtonFilled(icon: Icons.clear, onTap: () => Navigator.pop(context)),
                 const SizedBox(
-                  width: 15,
+                  width: 20,
                 )
               ],
             ),
             const SizedBox(
-              height: 25,
+              height: 20,
             ),
             ...routes
                 .map(

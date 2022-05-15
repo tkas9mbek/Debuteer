@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../theme/font.dart';
-import '../theme/styles.dart';
 import 'icon_button_filled.dart';
 
 enum TransparentLeadingType {
@@ -44,13 +43,18 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
 
     return AppBar(
       elevation: 0,
-      leading: Center(child: leading),
+      leading: Padding(
+        padding: const EdgeInsets.only(
+          left: 13,
+        ),
+        child: Center(child: leading),
+      ),
       backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(
         title,
         style: MyFont.style(
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -59,7 +63,7 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
           children: actions,
         ),
         const SizedBox(
-          width: 10,
+          width: 13,
         )
       ],
     );

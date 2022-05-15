@@ -27,7 +27,7 @@ class OpeningContainer extends StatelessWidget {
           color: colorScheme.primaryContainer,
         ),
         padding: const EdgeInsets.symmetric(
-          vertical: 8,
+          vertical: 10,
           horizontal: 15,
         ),
         child: Row(
