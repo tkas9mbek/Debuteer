@@ -12,6 +12,7 @@ class IconButtonFilled extends StatelessWidget {
     required this.icon,
     required this.onTap,
     this.fillType = IconButtonFillType.shadow,
+    this.size = 40,
     this.superscript,
     Key? key,
   }) : super(key: key);
@@ -20,10 +21,10 @@ class IconButtonFilled extends StatelessWidget {
   final void Function() onTap;
   final IconButtonFillType fillType;
   final String? superscript;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    const size = 42.0;
     const borderRadius = BorderRadius.all(Radius.circular(15));
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -56,7 +57,7 @@ class IconButtonFilled extends StatelessWidget {
             Center(
               child: Icon(
                 icon,
-                size: 18,
+                size: size * 0.5 - 3,
                 color: iconColor,
               ),
             ),

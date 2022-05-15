@@ -50,16 +50,16 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Text(
         title,
         style: MyFont.style(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
         ),
       ),
       actions: [
         Row(
           children: actions,
         ),
-        SizedBox(
-          width: Styles.generalBodyPadding.right,
+        const SizedBox(
+          width: 10,
         )
       ],
     );

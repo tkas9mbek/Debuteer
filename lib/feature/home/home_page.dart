@@ -10,9 +10,10 @@ import '../../core/theme/font.dart';
 import '../../core/theme/styles.dart';
 import '../../core/widget/icon_button_filled.dart';
 import '../../core/widget/page_foundation.dart';
-import '../../core/widget/text_button_filled.dart';
+import '../../core/widget/shadow_text_button.dart';
 import '../../core/widget/transparent_app_bar.dart';
 import '../database/service/database_provider.dart';
+import '../database/widget/opening_container.dart';
 import '../theme/service/board_theme_provider.dart';
 import 'service/orientation_provider.dart';
 
@@ -60,9 +61,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                 boardOrientation: orientation,
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
             Padding(
               padding: Styles.generalBodyPadding,
               child: Column(
@@ -70,7 +68,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ShadowButton(
+                      ShadowTextButton(
                         text: 'rotate_board'.tr(),
                         onTap: () => ref.read(orientationProvider.notifier).swap(),
                       ),
@@ -107,30 +105,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: Styles.cardGeneralRadius,
-                              color: colorScheme.primaryContainer,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 15,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    opening?.name ?? 'undefined_opening'.tr(),
-                                    textAlign: TextAlign.center,
-                                    style: MyFont.style(
-                                      fontSize: 16.5,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          OpeningContainer(
+                            name: opening?.name ?? 'undefined_opening'.tr(),
                           ),
                           const SizedBox(
                             height: 15,

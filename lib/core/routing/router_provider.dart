@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../feature/database/database_page.dart';
+import '../../feature/database/filter_database_page.dart';
 import '../../feature/home/home_page.dart';
 import '../../feature/loading_page.dart';
 import '../../feature/theme/board_theme_page.dart';
@@ -31,6 +33,16 @@ final routerProvider = Provider<GoRouter>(
         path: routeToTheme,
         pageBuilder: (BuildContext context, GoRouterState state) =>
             buildPageTransition(context, state, page: const ThemePage()),
+      ),
+      GoRoute(
+        path: routeToDatabase,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            buildPageTransition(context, state, page: const DatabasePage()),
+      ),
+      GoRoute(
+        path: routeToFilter,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            buildPageTransition(context, state, page: const FilterDatabasePage()),
       ),
     ],
   ),

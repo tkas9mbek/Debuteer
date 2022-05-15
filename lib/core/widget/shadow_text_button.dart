@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../theme/font.dart';
 import '../theme/styles.dart';
 
-class ShadowButton extends StatelessWidget {
-  const ShadowButton({
+class ShadowTextButton extends StatelessWidget {
+  const ShadowTextButton({
     required this.text,
     required this.onTap,
     Key? key,
@@ -15,7 +15,7 @@ class ShadowButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = 42.0;
+    const size = 40.0;
     const fillColor = Color.fromARGB(75, 0, 0, 0);
 
     return InkWell(
@@ -24,7 +24,7 @@ class ShadowButton extends StatelessWidget {
       child: Container(
         height: size,
         padding: const EdgeInsets.symmetric(
-          horizontal: 15,
+          horizontal: 20,
         ),
         decoration: BoxDecoration(
           borderRadius: Styles.cardGeneralRadius,

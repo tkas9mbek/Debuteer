@@ -52,9 +52,6 @@ class _HomePageState extends ConsumerState<BoardThemePage> {
                 boardColor: board,
               ),
             ),
-            const SizedBox(
-              height: 25,
-            ),
             Padding(
               padding: Styles.generalBodyPadding,
               child: Column(

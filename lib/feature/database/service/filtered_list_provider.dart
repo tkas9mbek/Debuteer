@@ -17,7 +17,11 @@ class FilteredListNotifier extends StateNotifier<List<Opening>> {
 
   void filter(FilterOption option) {
     state = database
-        .where((element) => element.name.contains(option.name) && element.pgn.contains(option.pgn))
+        .where(
+          (element) =>
+              element.name.toLowerCase().contains(option.name.toLowerCase()) &&
+              element.pgn.contains(option.pgn),
+        )
         .toList();
   }
 

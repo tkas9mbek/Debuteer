@@ -12,5 +12,12 @@
   "brown": "Brown",
   "orange": "Orange",
   "blue": "Blue",
-  "search_similar_openings": "Search similar openings"
+  "search_similar_openings": "Search similar openings",
+  "filter": "Filter",
+  "clear": "Clear",
+  "name": "Name",
+  "pgn": "PGN (Portable Game Notation)",
+  "search": "Search",
+  "of": "of",
+  "enter_valid_value": "Please enter a valid value to the input field!"
 }
