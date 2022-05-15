@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'language_data_provider.dart';
 
 /**
     Local of the platform (e.g. phone)
@@ -31,16 +32,14 @@ final fallbackLocaleProvider = Provider<Locale>((ref) {
       : supportedLocales[0];
 });
 
-/**
-    Provides the list of the supported current locales and language codee.
- */
-final supportedLanguageCodesProvider = Provider<List<String>>((ref) => const [
-    'en',
-  ],
-);
-
 final supportedLocalesProvider = Provider<List<Locale>>((ref) {
-  final supportedLanguages = ref.watch(supportedLanguageCodesProvider);
+  final supportedLanguages = ref.watch(languageDataProvider);
 
-  return supportedLanguages.map(Locale.new).toList();
+  return supportedLanguages.map((e) => e.locale).toList();
+});
+
+final supportedLanguageCodesProvider = Provider<List<String>>((ref) {
+  final supportedLanguages = ref.watch(supportedLocalesProvider);
+
+  return supportedLanguages.map((e) => e.languageCode).toList();
 });

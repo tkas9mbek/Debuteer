@@ -19,5 +19,6 @@
   "pgn": "PGN (Portable Game Notation)",
   "search": "Search",
   "of": "of",
-  "enter_valid_value": "Please enter a valid value to the input field!"
+  "enter_valid_value": "Please enter a valid value to the input field!",
+  "select_lang": "Select language"
 }

@@ -40,7 +40,7 @@ class _DatabasePageState extends ConsumerState<DatabasePage> {
 
     return false;
   }
-  
+
   @override
   void dispose() {
     textCtrl.dispose();
@@ -176,7 +176,10 @@ class _DatabasePageState extends ConsumerState<DatabasePage> {
                   padding: const EdgeInsets.only(
                     bottom: 15,
                   ),
-                  child: OpeningContainer(name: opening.name),
+                  child: OpeningContainer(
+                    onTap: () => context.push(routeToHome, extra: opening.pgn),
+                    name: opening.name,
+                  ),
                 );
               },
               itemCount: currentList.length,

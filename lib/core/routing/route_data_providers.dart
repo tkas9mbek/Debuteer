@@ -18,25 +18,25 @@ final drawerRoutesProvider = Provider<List<RouteData>>((ref) {
 final routeDataProvider = Provider<List<RouteData>>(
   (ref) => [
     RouteData(
-      name: 'database'.tr(),
+      name: 'database',
       route: routeToDatabase,
       location: RouteLocation.drawer,
       icon: FontAwesomeIcons.palette,
     ),
     // RouteData(
-    //   name: 'about'.tr(),
+    //   name: 'about',
     //   route: routeToAbout,
     //   location: RouteLocation.drawer,
     //   icon: FontAwesomeIcons.palette,
     // ),
     RouteData(
-      name: 'theme'.tr(),
+      name: 'theme',
       route: routeToTheme,
       location: RouteLocation.drawer,
       icon: FontAwesomeIcons.clock,
     ),
     RouteData(
-      name: 'board_theme'.tr(),
+      name: 'board_theme',
       route: routeToBoardTheme,
       location: RouteLocation.drawer,
       icon: FontAwesomeIcons.addressCard,

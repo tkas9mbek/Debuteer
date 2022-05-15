@@ -17,7 +17,7 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('assets/fonts/OFL.txt');
+    final license = await rootBundle.loadString('assets/fonts/UFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
 
@@ -62,6 +62,7 @@ class MyApp extends ConsumerWidget {
     final lightTheme = FlexColorScheme.light(scheme: flexTheme).toTheme;
     final darkTheme = FlexColorScheme.dark(scheme: flexTheme).toTheme;
     final fallbackLocale = ref.watch(fallbackLocaleProvider);
+    final languageCodes = ref.watch(supportedLanguageCodesProvider);
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
@@ -70,7 +71,10 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       localeResolutionCallback: (locale, supportedLocales) {
-        if (!supportedLocales.contains(locale)) {
+        print(locale);
+        print(supportedLocales);
+
+        if (!languageCodes.contains(locale?.languageCode)) {
           context.setLocale(fallbackLocale);
 
           return context.fallbackLocale;

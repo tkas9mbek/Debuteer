@@ -10,7 +10,7 @@ class MyFont {
     double? height,
     TextDecoration? decoration,
   }) =>
-      GoogleFonts.nunito(
+      GoogleFonts.ubuntu(
         fontSize: fontSize,
         color: color,
         fontWeight: fontWeight,

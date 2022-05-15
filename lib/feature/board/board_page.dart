@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chess_board/flutter_chess_board.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/routing/route_paths.dart';
 import '../../core/service/helper_functions.dart';
 import '../../core/theme/font.dart';
 import '../../core/theme/styles.dart';
@@ -12,28 +14,53 @@ import '../../core/widget/icon_button_filled.dart';
 import '../../core/widget/page_foundation.dart';
 import '../../core/widget/shadow_text_button.dart';
 import '../../core/widget/transparent_app_bar.dart';
+import '../database/model/filter_option.dart';
 import '../database/service/database_provider.dart';
+import '../database/service/filter_option_provider.dart';
+import '../database/service/filtered_list_provider.dart';
 import '../database/widget/opening_container.dart';
 import '../theme/service/board_theme_provider.dart';
 import 'service/orientation_provider.dart';
 
-class HomePage extends ConsumerStatefulWidget {
-  const HomePage({
+class BoardPage extends ConsumerStatefulWidget {
+  const BoardPage({
+    this.pgn = '',
     Key? key,
   }) : super(key: key);
+
+  final String pgn;
 
   @override
   ConsumerState createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<BoardPage> {
   final ChessBoardController _controller = ChessBoardController();
+
+  @override
+  void initState() {
+    _controller.loadPGN(widget.pgn);
+
+    super.initState();
+  }
 
   @override
   void dispose() {
     _controller.dispose();
 
     super.dispose();
+  }
+
+  void _searchSimilar(String pgn) {
+    final options = FilterOption(
+      name: '',
+      pgn: pgn,
+    );
+
+    ref.read(filterOptionProvider.state).state = options;
+    ref.read(filteredListProvider.notifier).filter(options);
+
+    context.push(routeToDatabase);
   }
 
   @override
@@ -163,7 +190,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           if (pgn.isNotEmpty)
                             InkWell(
                               borderRadius: BorderRadius.circular(7.5),
-                              onTap: () {},
+                              onTap: () => _searchSimilar(pgn),
                               child: Padding(
                                 padding: const EdgeInsets.all(3),
                                 child: Text(

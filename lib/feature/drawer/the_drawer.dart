@@ -4,12 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/theme/font.dart';
+import '../../core/localization/language_data_provider.dart';
 import '../../core/routing/route_data_providers.dart';
-import '../../core/routing/route_paths.dart';
 import '../../core/widget/icon_button_filled.dart';
-import '../theme/service/board_theme_list_provider.dart';
-import '../theme/service/board_theme_provider.dart';
 import 'drawer_tile.dart';
+import 'select_lang_window.dart';
 
 class TheDrawer extends ConsumerWidget {
   const TheDrawer({
@@ -20,6 +19,7 @@ class TheDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
     final routes = ref.watch(drawerRoutesProvider);
+    final languages = ref.watch(languageDataProvider);
 
     return Drawer(
       backgroundColor: colorScheme.primary,
@@ -47,14 +47,17 @@ class TheDrawer extends ConsumerWidget {
                   (e) => DrawerTile(
                     onTap: () => context.push(e.route),
                     child: Text(
-                      e.name,
+                      e.name.tr(),
                       style: MyFont.drawer(context),
                     ),
                   ),
                 )
                 .toList(),
             DrawerTile(
-              onTap: () => context.push(routeToLanguage),
+              onTap: () => showDialog<AlertDialog>(
+                context: context,
+                builder: (BuildContext context) => const SelectLangWindow(),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -62,7 +65,12 @@ class TheDrawer extends ConsumerWidget {
                     'language'.tr(),
                     style: MyFont.drawer(context),
                   ),
-                  const Text('🇷🇺'),
+                  Text(
+                    languages.firstWhere((element) => element.locale == context.locale).flag,
+                    style: MyFont.style(
+                      fontSize: 22,
+                    ),
+                  ),
                 ],
               ),
             ),

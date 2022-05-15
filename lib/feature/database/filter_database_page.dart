@@ -24,6 +24,7 @@ class FilterDatabasePage extends ConsumerStatefulWidget {
 
 class _DatabasePageState extends ConsumerState<FilterDatabasePage> {
   final _formKey = GlobalKey<FormBuilderState>();
+  Map<String, dynamic> _initialValues = <String, dynamic>{};
 
   void _doFilter() {
     if (_formKey.currentState!.validate()) {
@@ -43,9 +44,20 @@ class _DatabasePageState extends ConsumerState<FilterDatabasePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    final options = ref.read(filterOptionProvider);
+
+    _initialValues = <String, dynamic>{
+      'name': options.name,
+      'pgn': options.pgn,
+    };
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final options = ref.watch(filterOptionProvider);
 
     return PageFoundation(
       unfocusOnTap: true,
@@ -56,16 +68,16 @@ class _DatabasePageState extends ConsumerState<FilterDatabasePage> {
         actions: [
           ShadowTextButton(
             text: 'clear'.tr(),
-            onTap: () => _formKey.currentState?.reset(),
+            onTap: () => _formKey.currentState?.patchValue(<String, dynamic>{
+              'name': '',
+              'pgn': '',
+            }),
           ),
         ],
       ),
       body: FormBuilder(
         key: _formKey,
-        initialValue: <String, dynamic>{
-          'name': options.name,
-          'pgn': options.pgn,
-        },
+        initialValue: _initialValues,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
