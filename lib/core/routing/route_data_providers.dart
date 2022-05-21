@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../localization/locale_change_provider.dart';
 import 'route_data.dart';
 import 'route_paths.dart';
 
@@ -16,30 +16,25 @@ final drawerRoutesProvider = Provider<List<RouteData>>((ref) {
 });
 
 final routeDataProvider = Provider<List<RouteData>>(
-  (ref) => [
-    RouteData(
-      name: 'database',
-      route: routeToDatabase,
-      location: RouteLocation.drawer,
-      icon: FontAwesomeIcons.palette,
-    ),
-    // RouteData(
-    //   name: 'about',
-    //   route: routeToAbout,
-    //   location: RouteLocation.drawer,
-    //   icon: FontAwesomeIcons.palette,
-    // ),
-    RouteData(
-      name: 'theme',
-      route: routeToTheme,
-      location: RouteLocation.drawer,
-      icon: FontAwesomeIcons.clock,
-    ),
-    RouteData(
-      name: 'board_theme',
-      route: routeToBoardTheme,
-      location: RouteLocation.drawer,
-      icon: FontAwesomeIcons.addressCard,
-    ),
-  ],
+  (ref) {
+    ref.watch(localeChangeProvider);
+
+    return [
+      RouteData(
+        name: 'database'.tr(),
+        route: routeToDatabase,
+        location: RouteLocation.drawer,
+      ),
+      RouteData(
+        name: 'theme'.tr(),
+        route: routeToTheme,
+        location: RouteLocation.drawer,
+      ),
+      RouteData(
+        name: 'board_theme'.tr(),
+        route: routeToBoardTheme,
+        location: RouteLocation.drawer,
+      ),
+    ];
+  },
 );

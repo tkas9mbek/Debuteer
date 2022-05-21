@@ -36,7 +36,7 @@ class BoardThemeContainer extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              theme.name.tr(),
+              theme.name,
               style: MyFont.style(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

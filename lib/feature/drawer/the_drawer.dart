@@ -47,7 +47,7 @@ class TheDrawer extends ConsumerWidget {
                   (e) => DrawerTile(
                     onTap: () => context.push(e.route),
                     child: Text(
-                      e.name.tr(),
+                      e.name,
                       style: MyFont.drawer(context),
                     ),
                   ),

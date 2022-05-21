@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/localization/language_data_provider.dart';
+import '../../core/localization/locale_change_provider.dart';
 import '../../core/theme/font.dart';
 import '../../core/widget/icon_button_filled.dart';
 
@@ -50,8 +51,10 @@ class SelectLangWindow extends ConsumerWidget {
                     Radius.circular(5),
                   ),
                   onTap: () {
-                    context.setLocale(e.locale);
-                    Navigator.pop(context);
+                    if (context.locale != e.locale) {
+                      context.setLocale(e.locale);
+                      ref.read(localeChangeProvider.notifier).trigger();
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -66,7 +69,8 @@ class SelectLangWindow extends ConsumerWidget {
                           style: MyFont.style(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: colorScheme.onPrimaryContainer,                          ),
+                            color: colorScheme.onPrimaryContainer,
+                          ),
                         ),
                         Text(
                           e.flag,

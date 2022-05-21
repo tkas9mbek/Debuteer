@@ -21,7 +21,7 @@ class ThemePage extends ConsumerWidget {
     return PageFoundation(
       backgroundColor: colorScheme.primary,
       appBar: TransparentAppBar(
-        title: 'board_theme'.tr(),
+        title: 'theme'.tr(),
       ),
       padding: Styles.generalBodyPadding,
       body: ListView.separated(
