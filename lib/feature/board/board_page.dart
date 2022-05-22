@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/routing/route_paths.dart';
 import '../../core/service/helper_functions.dart';
 import '../../core/theme/styles.dart';
+import '../../core/value/enums.dart';
 import '../../core/widget/icon_button_filled.dart';
 import '../../core/widget/page_foundation.dart';
 import '../../core/widget/shadow_text_button.dart';
@@ -39,6 +40,9 @@ class BoardPage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<BoardPage> {
   final ChessBoardController _controller = ChessBoardController();
   final _assetsAudioPlayer = AssetsAudioPlayer();
+  List<String> _stack = [];
+  StackOperation _stackOperation = StackOperation.clear;
+  String _lastMove = '';
 
   @override
   void initState() {
@@ -52,6 +56,36 @@ class _HomePageState extends ConsumerState<BoardPage> {
     _controller.dispose();
 
     super.dispose();
+  }
+
+  void _onMove(String pgn) {
+    var sound = true;
+
+    switch (_stackOperation) {
+      case StackOperation.clear:
+        _stack = [];
+        break;
+      case StackOperation.save:
+        if (_lastMove.isNotEmpty) {
+          _stack.add(_lastMove);
+        }
+        break;
+      case StackOperation.pop:
+        _stack.removeLast();
+        break;
+      case StackOperation.ignore:
+        sound = false;
+        break;
+    }
+
+    if (sound && (pgn.isNotEmpty || _lastMove.isNotEmpty)) {
+      _assetsAudioPlayer.open(
+        Audio('assets/sounds/move.wav'),
+      );
+    }
+
+    _lastMove = pgn;
+    _stackOperation = StackOperation.clear;
   }
 
   void _searchSimilar(String pgn) {
@@ -100,13 +134,27 @@ class _HomePageState extends ConsumerState<BoardPage> {
                     children: [
                       ShadowTextButton(
                         text: 'rotate_board'.tr(),
-                        onTap: () => ref.read(orientationProvider.notifier).swap(),
+                        onTap: () {
+                          _stackOperation = StackOperation.ignore;
+                          ref.read(orientationProvider.notifier).swap();
+                        },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButtonFilled(
                             onTap: () {
+                              _stackOperation = StackOperation.save;
+                              _controller.resetBoard();
+                            },
+                            icon: FontAwesomeIcons.backward,
+                          ),
+                          const SizedBox(
+                            width: 12.5,
+                          ),
+                          IconButtonFilled(
+                            onTap: () {
+                              _stackOperation = StackOperation.save;
                               setState(() => _controller.game.undo_move());
                             },
                             icon: FontAwesomeIcons.chevronLeft,
@@ -115,8 +163,13 @@ class _HomePageState extends ConsumerState<BoardPage> {
                             width: 12.5,
                           ),
                           IconButtonFilled(
-                            onTap: _controller.resetBoard,
-                            icon: FontAwesomeIcons.backward,
+                            onTap: () {
+                              if (_stack.isNotEmpty) {
+                                _stackOperation = StackOperation.pop;
+                                _controller.loadPGN(_stack.last);
+                              }
+                            },
+                            icon: FontAwesomeIcons.chevronRight,
                           ),
                         ],
                       ),
@@ -132,9 +185,7 @@ class _HomePageState extends ConsumerState<BoardPage> {
                       final pgn = sanToPgn(san);
                       final opening = ref.read(databaseProvider.notifier).search(pgn);
 
-                      _assetsAudioPlayer.open(
-                        Audio('assets/sounds/move.wav'),
-                      );
+                      _onMove(pgn);
 
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
