@@ -78,7 +78,7 @@ class _HomePageState extends ConsumerState<BoardPage> {
         break;
     }
 
-    if (sound && (pgn.isNotEmpty || _lastMove.isNotEmpty)) {
+    if (sound && (pgn.isNotEmpty || _lastMove.isNotEmpty) && pgn != _lastMove) {
       _assetsAudioPlayer.open(
         Audio('assets/sounds/move.wav'),
       );
