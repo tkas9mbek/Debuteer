@@ -61,7 +61,6 @@ class _DatabasePageState extends ConsumerState<DatabasePage> {
     final currentList = list.sublist((page - 1) * PER_PAGE, min(page * PER_PAGE, list.length));
 
     return PageFoundation(
-      hasDrawer: true,
       backgroundColor: colorScheme.primary,
       padding: Styles.generalBodyPadding.copyWith(
         top: 0,

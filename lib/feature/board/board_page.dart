@@ -39,7 +39,6 @@ class BoardPage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<BoardPage> {
   final ChessBoardController _controller = ChessBoardController();
-  final _assetsAudioPlayer = AssetsAudioPlayer();
   List<String> _stack = [];
   StackOperation _stackOperation = StackOperation.clear;
   String _lastMove = '';
@@ -78,10 +77,8 @@ class _HomePageState extends ConsumerState<BoardPage> {
         break;
     }
 
-    if (sound && (pgn.isNotEmpty || _lastMove.isNotEmpty) && pgn != _lastMove) {
-      _assetsAudioPlayer.open(
-        Audio('assets/sounds/move.wav'),
-      );
+    if (sound && pgn != _lastMove) {
+      AssetsAudioPlayer.playAndForget(Audio('assets/sounds/move.wav'));
     }
 
     _lastMove = pgn;
@@ -114,7 +111,6 @@ class _HomePageState extends ConsumerState<BoardPage> {
         leadingType: TransparentLeadingType.drawer,
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             AspectRatio(

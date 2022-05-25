@@ -1,16 +1,36 @@
 # debuteer
 
-A new Flutter project.
+Mobile app that determines the chess opening from the moves.
 
-## Getting Started
+## Releases
+- [Google Play Store](https://play.google.com/store/apps/details?id=kg.cos9.debuteer)
 
-This project is a starting point for a Flutter application.
+## Debuteer Features:
 
-A few resources to get you started if this is your first Flutter project:
+* Determine the opening by moves
+* Openings database
+* Search similar openings
+* Theme
+* Localization
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## How to Use
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Step 1:**
+
+Download or clone this repo by using the link below:
+
+```
+https://github.com/tkas9mbek/Debuteer.git
+```
+
+**Step 2:**
+
+Go to project root and execute the following command in console to get the required dependencies:
+
+```
+flutter pub get 
+```
+
+**Step 3:**
+
+Run the project on Android Studio or other IDE.
